@@ -47,7 +47,7 @@
     ProductCategoryID = {$productcat} 
     where ProductID = {$productID}";
 
-    echo $sql2;
+    echo $sql2 . "<br>";
 
 
     $resultUpdate= $con->query($sql2);
@@ -56,15 +56,18 @@
     $con->close();
 
     //upload file
-    echo $_FILES["picfile"]["name"];
+    // echo $_FILES["picfile"]["name"];
     $target_dir = "images/";
     $target_file = $target_dir . basename($_FILES["picfile"]["name"]);
+    //echo $target_file.  "<br>";
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
     // Check if image file is a actual image or fake image
     
     $check = getimagesize($_FILES["picfile"]["tmp_name"]);
+    
+    print $check;
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
